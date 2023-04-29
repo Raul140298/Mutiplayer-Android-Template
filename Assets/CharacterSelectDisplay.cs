@@ -117,6 +117,18 @@ public class CharacterSelectDisplay : NetworkBehaviour
                 players[i] = new CharacterSelectState(players[i].clientId, players[i].characterId, true);
             }
         }
+
+        foreach (var player in players)
+        {
+            if (!player.isReady) { return; }
+        }
+
+        foreach (var player in players)
+        {
+            ServerManager.Instance.SetCharacter(player.clientId, player.characterId);
+        }
+
+        ServerManager.Instance.StartGame();
     }
 
     private void HandlePlayersStateChanged(NetworkListEvent<CharacterSelectState> changeEvent)

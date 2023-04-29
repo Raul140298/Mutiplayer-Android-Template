@@ -6,19 +6,14 @@ using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour
 {
-    [Header("Settings")]
-    [SerializeField] private string gameplaySceneName;
-
     public void OnHostButtonPressed()
     {
-        NetworkManager.Singleton.StartHost();
-        NetworkManager.Singleton.SceneManager.LoadScene(gameplaySceneName, LoadSceneMode.Single);
+        ServerManager.Instance.StartHost();
     }
 
     public void OnServerButtonPressed()
     {
-        NetworkManager.Singleton.StartServer();
-        NetworkManager.Singleton.SceneManager.LoadScene(gameplaySceneName, LoadSceneMode.Single);
+        ServerManager.Instance.StartServer();
     }
 
     public void OnClientButtonPressed()

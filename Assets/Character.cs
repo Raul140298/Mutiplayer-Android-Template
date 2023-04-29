@@ -10,4 +10,5 @@ public class Character : ScriptableObject
     public int id = -1;
     public string displayName = "New Display Name";
     public Sprite icon;
+    public NetworkObject gameplayPrefab;
 }

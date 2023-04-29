@@ -15,3 +15,4 @@ MonoBehaviour:
   id: 1
   displayName: Indian
   icon: {fileID: 21300000, guid: 0029170d14ce6c04c9f45c22cdae5559, type: 3}
+  gameplayPrefab: {fileID: 5327715963362474778, guid: 7c2ad398da3e53c4791bfb91c86057ba, type: 3}
