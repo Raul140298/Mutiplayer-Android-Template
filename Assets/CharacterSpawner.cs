@@ -13,7 +13,7 @@ public class CharacterSpawner : NetworkBehaviour
     {
         if (!IsServer) { return; }
 
-        foreach (var client in ServerManager.Instance.clientData)
+        foreach (var client in HostManager.Instance.clientData)
         {
             var character = characterDatabase.GetCharacterById(client.Value.characterId);
 

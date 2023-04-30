@@ -1,16 +1,23 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
+using Unity.Netcode.Transports.UTP;
+using Unity.Networking.Transport.Relay;
+using Unity.Services.Relay;
+using Unity.Services.Relay.Models;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ServerManager : MonoBehaviour
+public class HostManager : MonoBehaviour
 {
     [Header("Settings")]
+    [SerializeField] private int maxConnections;
     [SerializeField] private string gameplaySceneName;
     [SerializeField] private string characterSelectSceneName;
+    public string joinCode { get; private set; }
 
-    public static ServerManager Instance { get; private set; }
+    public static HostManager Instance { get; private set; }
 
     public Dictionary<ulong, ClientData> clientData { get; private set; }
 
@@ -29,18 +36,34 @@ public class ServerManager : MonoBehaviour
         }
     }
 
-    public void StartServer()
+    public async void StartHost()
     {
-        NetworkManager.Singleton.ConnectionApprovalCallback += ApprovalCheck;
-        NetworkManager.Singleton.OnServerStarted += OnNetworkReady;
+        Allocation allocation;
 
-        clientData = new Dictionary<ulong, ClientData>();
+        try
+        {
+            allocation = await RelayService.Instance.CreateAllocationAsync(maxConnections);
+        }
+        catch (Exception e)
+        {
+            Debug.LogError("Relay creation request failed :" + e);
+            throw;
+        }
 
-        NetworkManager.Singleton.StartServer();
-    }
+        try
+        {
+            joinCode = await RelayService.Instance.GetJoinCodeAsync(allocation.AllocationId);
+        }
+        catch
+        {
+            Debug.LogError("Relay creation joinCode failed :");
+            throw;
+        }
 
-    public void StartHost()
-    {
+        var relayServerData = new RelayServerData(allocation, "dtls");
+
+        NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(relayServerData);
+
         NetworkManager.Singleton.ConnectionApprovalCallback += ApprovalCheck;
         NetworkManager.Singleton.OnServerStarted += OnNetworkReady;
 

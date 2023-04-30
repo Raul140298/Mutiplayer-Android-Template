@@ -14,6 +14,7 @@ public class CharacterSelectDisplay : NetworkBehaviour
     [SerializeField] private CharacterSelectButton selectButtonPrefab;
     [SerializeField] private PlayerCard[] playerCards;
     [SerializeField] private Button readyButton;
+    [SerializeField] private TMP_Text joinCodeText;
 
     private NetworkList<CharacterSelectState> players;
 
@@ -47,6 +48,11 @@ public class CharacterSelectDisplay : NetworkBehaviour
             {
                 HandleClientConnected(client.ClientId);
             }
+        }
+
+        if (IsHost)
+        {
+            joinCodeText.text = HostManager.Instance.joinCode;
         }
     }
 
@@ -125,10 +131,10 @@ public class CharacterSelectDisplay : NetworkBehaviour
 
         foreach (var player in players)
         {
-            ServerManager.Instance.SetCharacter(player.clientId, player.characterId);
+            HostManager.Instance.SetCharacter(player.clientId, player.characterId);
         }
 
-        ServerManager.Instance.StartGame();
+        HostManager.Instance.StartGame();
     }
 
     private void HandlePlayersStateChanged(NetworkListEvent<CharacterSelectState> changeEvent)
