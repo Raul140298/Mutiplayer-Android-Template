@@ -556,10 +556,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 464950833}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae16b3bfc0417b14c8a45bd7c9dd688a, type: 3}
+  m_Script: {fileID: 11500000, guid: 85d8b19de04cbc248ba40a3d6b329017, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterDatabase: {fileID: 11400000, guid: 3ec391ca772e2f641999a463a6ec5e4b, type: 2}
+  characterDatabase: {fileID: 11400000, guid: 7daa82a7b57d6d2438a80a7a40658a9a, type: 2}
   visuals: {fileID: 265662529}
   characterIconImage: {fileID: 1080705179}
   playerNameText: {fileID: 124903322}
@@ -1127,7 +1127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 11926211
+  GlobalObjectIdHash: 226308660
   AlwaysReplicateAsRoot: 0
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
@@ -1156,14 +1156,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1008820247}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60ec7d69dfe9d594aaa13b56b0e5b882, type: 3}
+  m_Script: {fileID: 11500000, guid: 7c0529628818306469417b7413036c0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   characterInfoPanel: {fileID: 1642898864}
   characterNameText: {fileID: 833127483}
-  characterDatabase: {fileID: 11400000, guid: 3ec391ca772e2f641999a463a6ec5e4b, type: 2}
+  characterDatabase: {fileID: 11400000, guid: 7daa82a7b57d6d2438a80a7a40658a9a, type: 2}
   charactersHolder: {fileID: 900777852}
-  selectButtonPrefab: {fileID: 5597500395094726549, guid: 068985f6d190844498092344c3047960, type: 3}
+  selectButtonPrefab: {fileID: 5597500395094726549, guid: b00582c5bcde3eb4ca325b9acbdb07cb, type: 3}
   playerCards:
   - {fileID: 464950835}
   - {fileID: 1735099674}
@@ -1869,10 +1869,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1735099672}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae16b3bfc0417b14c8a45bd7c9dd688a, type: 3}
+  m_Script: {fileID: 11500000, guid: 85d8b19de04cbc248ba40a3d6b329017, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterDatabase: {fileID: 11400000, guid: 3ec391ca772e2f641999a463a6ec5e4b, type: 2}
+  characterDatabase: {fileID: 11400000, guid: 7daa82a7b57d6d2438a80a7a40658a9a, type: 2}
   visuals: {fileID: 1932410177}
   characterIconImage: {fileID: 530316338}
   playerNameText: {fileID: 1396990209}
