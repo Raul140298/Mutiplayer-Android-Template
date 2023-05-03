@@ -30,7 +30,7 @@ public class GameController : MonoBehaviour
 
     private void HandleSwipe(eDirection dir)
     {
-        player.MoveServerRpc(dir);
+        player.MovePlayer(dir);
     }
 
     void OnDisable()

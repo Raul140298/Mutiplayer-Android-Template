@@ -13,7 +13,7 @@ public class Player : NetworkBehaviour
     [SerializeField] private NetworkVariable<ulong> clientId = new NetworkVariable<ulong>();
     [SerializeField] private NetworkVariable<Vector2> currentPos = new NetworkVariable<Vector2>();
     [SerializeField] private NetworkVariable<bool> inMovement = new NetworkVariable<bool>();
-    [SerializeField] private NetworkVariable<eDirection> pendingDir;
+    [SerializeField] private NetworkVariable<eDirection> pendingDir = new NetworkVariable<eDirection>();
 
     [Header("ANIMS")]
     [SerializeField] private AnimationClip animIdle;
@@ -33,10 +33,6 @@ public class Player : NetworkBehaviour
     void Start()
     {
         inMovement.Value = false;
-        /*         currentPos.OnValueChanged += (prev, curr) =>
-                {
-                    PlayMovementAnimation(pendingDir.Value);
-                }; */
     }
 
     public void SetStartingPosition(int row, int column)
@@ -44,6 +40,13 @@ public class Player : NetworkBehaviour
         currentPos.Value = new Vector2(row, column);
 
         UpdatePositionInStage();
+    }
+
+    public void MovePlayer(eDirection dir)
+    {
+        MoveServerRpc(dir);
+        PlayMovementAnimation(dir);
+        UpdatePositionServerRpc();
     }
 
     [ServerRpc]
@@ -64,9 +67,6 @@ public class Player : NetworkBehaviour
             case eDirection.Down: MoveDown(); break;
             case eDirection.Left: MoveBack(); break;
         }
-
-        PlayMovementAnimation(dir);
-        UpdatePositionInStage();
     }
 
     private void MoveForward()
@@ -89,6 +89,12 @@ public class Player : NetworkBehaviour
         currentPos.Value = new Vector2(currentPos.Value.x + 1, currentPos.Value.y);
     }
 
+    [ServerRpc]
+    private void UpdatePositionServerRpc(ServerRpcParams serverRpcParams = default)
+    {
+        UpdatePositionInStage();
+    }
+
     private void UpdatePositionInStage()
     {
         Vector2 offset = new Vector2(currentPos.Value.y * CELL_WIDTH, -currentPos.Value.x * CELL_HEIGHT);
@@ -104,7 +110,7 @@ public class Player : NetworkBehaviour
 
         if (pendingDir.Value != eDirection.None)
         {
-            MoveServerRpc(pendingDir.Value);
+            MovePlayer(pendingDir.Value);
             pendingDir.Value = eDirection.None;
         }
     }

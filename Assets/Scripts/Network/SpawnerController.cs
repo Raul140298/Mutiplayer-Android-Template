@@ -29,6 +29,7 @@ public class SpawnerController : NetworkBehaviour
                     player.ClientId.Value = client.Value.clientId;
                     player.SetStartingPosition(2, 3 + 5 * aux);
                     player.gameObject.transform.localScale = new Vector3(1 - 2 * aux, 1, 1);
+                    player.gameObject.name = "Player" + aux;
                     aux += 1;
                 }
             }
