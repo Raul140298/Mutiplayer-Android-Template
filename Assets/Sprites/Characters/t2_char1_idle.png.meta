@@ -1,22 +1,7 @@
 fileFormatVersion: 2
-guid: 35a3c99dc023cbd46ad1e8debfd8b031
+guid: 4087a38db68ee7742a22e3594737c40f
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: 3021534513647920164
-    second: t2_char1_idle_0
-  - first:
-      213: 1542016678744124369
-    second: t2_char1_idle_1
-  - first:
-      213: 3025867507946250654
-    second: t2_char1_idle_2
-  - first:
-      213: -9083156496995744721
-    second: t2_char1_idle_3
-  - first:
-      213: -8092321887110816470
-    second: t2_char1_idle_4
+  internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 12
   mipmaps:
@@ -78,7 +63,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
-  cookieLightType: 1
+  cookieLightType: 0
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -97,7 +82,19 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -118,18 +115,6 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Server
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -170,8 +155,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4242192a1a5aee920800000000000000
-      internalID: 3021534513647920164
+      spriteID: 867e21eade9f5924e9bea99328da54ec
+      internalID: -1858011535
       vertices: []
       indices: 
       edges: []
@@ -191,8 +176,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1db6546dff7566510800000000000000
-      internalID: 1542016678744124369
+      spriteID: c3c796e1095dabc40b638c64974c3e8f
+      internalID: -1687266859
       vertices: []
       indices: 
       edges: []
@@ -212,8 +197,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e91688c777a0ef920800000000000000
-      internalID: 3025867507946250654
+      spriteID: a25c3bddcf541924cbec66c94150f663
+      internalID: 1076844966
       vertices: []
       indices: 
       edges: []
@@ -233,8 +218,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f2489456a4522f180800000000000000
-      internalID: -9083156496995744721
+      spriteID: fea55769ba64ab64c8332f9c0cc3620a
+      internalID: -173339052
       vertices: []
       indices: 
       edges: []
@@ -254,8 +239,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a2d14ae5e1c42bf80800000000000000
-      internalID: -8092321887110816470
+      spriteID: 483c3a41d558b304eb26b12817eb8f65
+      internalID: 834491166
       vertices: []
       indices: 
       edges: []
@@ -271,11 +256,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      t2_char1_idle_3: -9083156496995744721
-      t2_char1_idle_1: 1542016678744124369
-      t2_char1_idle_0: 3021534513647920164
-      t2_char1_idle_2: 3025867507946250654
-      t2_char1_idle_4: -8092321887110816470
+      t2_char1_idle_3: -173339052
+      t2_char1_idle_1: -1687266859
+      t2_char1_idle_0: -1858011535
+      t2_char1_idle_2: 1076844966
+      t2_char1_idle_4: 834491166
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

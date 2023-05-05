@@ -13,8 +13,6 @@ public class GameController : NetworkBehaviour
 
     public override void OnNetworkSpawn()
     {
-        Debug.Log("HOL3");
-
         if (IsServer)
         {
             int numPlayer = -1;
@@ -32,6 +30,7 @@ public class GameController : NetworkBehaviour
                     Fighter player = characterInstance.GetComponent<Fighter>();
 
                     player.ClientId.Value = client.Value.clientId;
+                    player.gameObject.name = "Player " + numPlayer.ToString();
 
                     if (numPlayer == 0)
                     {
@@ -49,15 +48,12 @@ public class GameController : NetworkBehaviour
 
         if (IsClient)
         {
-            Debug.Log("HOLI2");
             StartCoroutine(CRTLookForPlayer());
         }
     }
 
     IEnumerator CRTLookForPlayer()
     {
-        Debug.Log("HOLI");
-
         yield return new WaitForSeconds(1f);
 
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");

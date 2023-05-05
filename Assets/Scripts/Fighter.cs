@@ -47,7 +47,7 @@ public class Fighter : NetworkBehaviour
     public void SetLimits(Vector2 limitX, Vector2 limitY)
     {
         this.limitX.Value = limitX;
-        this.limitX.Value = limitY;
+        this.limitY.Value = limitY;
     }
 
     public void MovePlayer(eDirection dir)
@@ -77,24 +77,48 @@ public class Fighter : NetworkBehaviour
         }
     }
 
-    private void MoveForward()
-    {
-        currentPos.Value = new Vector2(currentPos.Value.x, currentPos.Value.y + 1);
-    }
-
-    private void MoveBack()
-    {
-        currentPos.Value = new Vector2(currentPos.Value.x, currentPos.Value.y - 1);
-    }
-
     private void MoveUp()
     {
+        if (currentPos.Value.x - 1 < limitX.Value.x)
+        {
+            inMovement.Value = false;
+            return;
+        }
+
         currentPos.Value = new Vector2((byte)currentPos.Value.x - 1, currentPos.Value.y);
     }
 
     private void MoveDown()
     {
+        if (currentPos.Value.x + 1 > limitX.Value.y)
+        {
+            inMovement.Value = false;
+            return;
+        }
+
         currentPos.Value = new Vector2(currentPos.Value.x + 1, currentPos.Value.y);
+    }
+
+    private void MoveForward()
+    {
+        if (currentPos.Value.y + 1 > limitY.Value.y)
+        {
+            inMovement.Value = false;
+            return;
+        }
+
+        currentPos.Value = new Vector2(currentPos.Value.x, currentPos.Value.y + 1);
+    }
+
+    private void MoveBack()
+    {
+        if (currentPos.Value.y - 1 < limitY.Value.x)
+        {
+            inMovement.Value = false;
+            return;
+        }
+
+        currentPos.Value = new Vector2(currentPos.Value.x, currentPos.Value.y - 1);
     }
 
     [ServerRpc]
@@ -131,7 +155,7 @@ public class Fighter : NetworkBehaviour
         {
             case eDirection.Left: anim = this.transform.localScale.x == 1 ? animMoveBack : animMoveForward; break;
             case eDirection.Right: anim = this.transform.localScale.x == 1 ? animMoveForward : animMoveBack; break;
-            case eDirection.Up: anim = animMoveForward; break;
+            case eDirection.Up: anim = animMoveBack; break;
             case eDirection.Down: anim = animMoveForward; break;
             case eDirection.None: anim = animIdle; break;
         }
