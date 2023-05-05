@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -45,7 +46,13 @@ public class ApplicationController : MonoBehaviour
 
             await clientSingleton.CreateClient();
 
-            clientSingleton.Manager.ToMainMenu();
+            StartCoroutine(WaitForSplash(clientSingleton));
         }
+    }
+
+    IEnumerator WaitForSplash(ClientSingleton clientSingleton)
+    {
+        yield return new WaitForSeconds(2.5f);
+        clientSingleton.Manager.ToMainMenu();
     }
 }

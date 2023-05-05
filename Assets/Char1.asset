@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   displayName: Cowboy
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 2899e56315db5f343949e7b8c7686ab2, type: 3}
   gameplayPrefab: {fileID: 938916219567351428, guid: d2b4709c37ef989459cc8cf4c7522459, type: 3}
