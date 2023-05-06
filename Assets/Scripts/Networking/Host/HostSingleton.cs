@@ -52,6 +52,8 @@ public class HostSingleton : MonoBehaviour
 
     public async Task<bool> StartHostAsync()
     {
+        Debug.Log("START HOST ASYNC");
+
         Allocation allocation = null;
 
         try
@@ -132,6 +134,8 @@ public class HostSingleton : MonoBehaviour
         NetworkServer = new MatchplayNetworkServer(NetworkManager.Singleton);
 
         NetworkManager.Singleton.StartHost();
+
+        Debug.Log("CONFIGURE SERVER FROM HOST SINGLETON");
 
 #pragma warning disable 4014
         await NetworkServer.ConfigureServer(new GameInfo

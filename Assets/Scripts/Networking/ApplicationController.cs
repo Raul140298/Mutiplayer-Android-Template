@@ -5,6 +5,7 @@ using UnityEngine;
 public class ApplicationController : MonoBehaviour
 {
     [Header("References")]
+
     [SerializeField] private ServerSingleton serverPrefab;
     [SerializeField] private ClientSingleton clientPrefab;
     [SerializeField] private HostSingleton hostSingleton;
@@ -36,6 +37,8 @@ public class ApplicationController : MonoBehaviour
                 map = Map.Default,
                 gameQueue = GameQueue.Casual
             };
+
+            Debug.Log("START GAME SERVER");
 
             await serverSingleton.Manager.StartGameServerAsync(defaultGameInfo);
         }

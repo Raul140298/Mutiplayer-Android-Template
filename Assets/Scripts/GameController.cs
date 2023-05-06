@@ -10,6 +10,7 @@ public class GameController : NetworkBehaviour
     [SerializeField] private Fighter player;
     [SerializeField] private CharacterDatabase characterDatabase;
     [SerializeField] private Fighter[] players;
+    [SerializeField] private SpriteRenderer background;
 
     public override void OnNetworkSpawn()
     {
@@ -34,11 +35,14 @@ public class GameController : NetworkBehaviour
 
                     if (numPlayer == 0)
                     {
+                        player.LeftPlayer.Value = true;
                         player.SetStartingPosition(2, 3);
                         player.SetLimits(new Vector2(0, 3), new Vector2(0, 5));
                     }
                     else
                     {
+                        player.LeftPlayer.Value = false;
+                        player.transform.localScale = new Vector3(-1, 1, 1);
                         player.SetStartingPosition(2, 8);
                         player.SetLimits(new Vector2(0, 3), new Vector2(6, 11));
                     }
@@ -65,6 +69,11 @@ public class GameController : NetworkBehaviour
             if (fighter.ClientId.Value == NetworkManager.LocalClientId)
             {
                 this.player = fighter;
+
+                if (fighter.LeftPlayer.Value == false)
+                {
+                    background.flipX = true;
+                }
             }
         }
     }

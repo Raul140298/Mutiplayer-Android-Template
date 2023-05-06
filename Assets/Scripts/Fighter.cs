@@ -11,6 +11,7 @@ public class Fighter : NetworkBehaviour
 
     [Header("POSITION")]
     [SerializeField] private NetworkVariable<ulong> clientId = new NetworkVariable<ulong>();
+    [SerializeField] private NetworkVariable<bool> leftPlayer = new NetworkVariable<bool>();
     [SerializeField] private NetworkVariable<Vector2> currentPos = new NetworkVariable<Vector2>();
     [SerializeField] private NetworkVariable<Vector2> limitX = new NetworkVariable<Vector2>();
     [SerializeField] private NetworkVariable<Vector2> limitY = new NetworkVariable<Vector2>();
@@ -167,5 +168,11 @@ public class Fighter : NetworkBehaviour
     {
         get { return clientId; }
         set { clientId = value; }
+    }
+
+    public NetworkVariable<bool> LeftPlayer
+    {
+        get { return leftPlayer; }
+        set { leftPlayer = value; }
     }
 }

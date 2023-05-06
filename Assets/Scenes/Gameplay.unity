@@ -609,6 +609,8 @@ MonoBehaviour:
   inputController: {fileID: 1361016832}
   player: {fileID: 0}
   characterDatabase: {fileID: 11400000, guid: 7daa82a7b57d6d2438a80a7a40658a9a, type: 2}
+  players: []
+  background: {fileID: 1320750213}
 --- !u!4 &1440419421
 Transform:
   m_ObjectHideFlags: 0

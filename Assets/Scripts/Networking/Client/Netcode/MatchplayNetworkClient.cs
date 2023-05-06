@@ -19,7 +19,7 @@ public class MatchplayNetworkClient : IDisposable
 
     private DisconnectReason DisconnectReason { get; } = new DisconnectReason();
 
-    private const string MenuSceneName = "Menu";
+    private const string MenuSceneName = "MainMenu";
 
     public MatchplayNetworkClient()
     {
@@ -106,6 +106,7 @@ public class MatchplayNetworkClient : IDisposable
     {
         MatchplayNetworkMessenger.RegisterListener(NetworkMessage.LocalClientConnected,
             ReceiveLocalClientConnectStatus);
+
         MatchplayNetworkMessenger.RegisterListener(NetworkMessage.LocalClientDisconnected,
             ReceiveLocalClientDisconnectStatus);
     }
@@ -122,6 +123,8 @@ public class MatchplayNetworkClient : IDisposable
         }
 
         OnLocalConnection?.Invoke(status);
+
+        Debug.Log("INVOKE");
     }
 
     private void ReceiveLocalClientDisconnectStatus(ulong clientId, FastBufferReader reader)

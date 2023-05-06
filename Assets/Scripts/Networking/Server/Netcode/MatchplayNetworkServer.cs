@@ -51,6 +51,8 @@ public class MatchplayNetworkServer : IDisposable
 
     public async Task<SynchedServerData> ConfigureServer(GameInfo startingGameInfo)
     {
+        Debug.Log("CHARACTER SELECT");
+
         networkManager.SceneManager.LoadScene("CharacterSelect", LoadSceneMode.Single);
 
         bool localNetworkedSceneLoaded = false;

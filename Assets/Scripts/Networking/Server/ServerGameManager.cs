@@ -67,6 +67,8 @@ public class ServerGameManager : IDisposable
             return;
         }
 
+        Debug.Log("CONFIGURE SERVER FROM ISSERVER");
+
         synchedServerData = await NetworkServer.ConfigureServer(startingGameInfo);
         if (synchedServerData == null)
         {
@@ -97,7 +99,7 @@ public class ServerGameManager : IDisposable
     private void SetAllocationData(GameInfo startingGameInfo)
     {
         multiplayAllocationService.SetServerName(serverName);
-        multiplayAllocationService.SetMaxPlayers(2);
+        multiplayAllocationService.SetMaxPlayers(4);
         multiplayAllocationService.SetBuildID("0");
         multiplayAllocationService.SetMap(startingGameInfo.map.ToString());
         multiplayAllocationService.SetMode(startingGameInfo.gameMode.ToString());
