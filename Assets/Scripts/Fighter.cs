@@ -4,24 +4,20 @@ using UnityEngine;
 using Unity.Netcode;
 using DG.Tweening;
 using PowerTools;
+using Unity.Netcode.Components;
 
 public class Fighter : NetworkBehaviour
 {
-    private SpriteAnim compAnim;
-
     [Header("POSITION")]
     [SerializeField] private NetworkVariable<ulong> clientId = new NetworkVariable<ulong>();
+    [SerializeField] private NetworkVariable<int> characterId = new NetworkVariable<int>();
     [SerializeField] private NetworkVariable<bool> leftPlayer = new NetworkVariable<bool>();
     [SerializeField] private NetworkVariable<Vector2> currentPos = new NetworkVariable<Vector2>();
     [SerializeField] private NetworkVariable<Vector2> limitX = new NetworkVariable<Vector2>();
     [SerializeField] private NetworkVariable<Vector2> limitY = new NetworkVariable<Vector2>();
     [SerializeField] private NetworkVariable<bool> inMovement = new NetworkVariable<bool>();
     [SerializeField] private NetworkVariable<eDirection> pendingDir = new NetworkVariable<eDirection>();
-
-    [Header("ANIMS")]
-    [SerializeField] private AnimationClip animIdle;
-    [SerializeField] private AnimationClip animMoveBack;
-    [SerializeField] private AnimationClip animMoveForward;
+    [SerializeField] private NetworkAnimator animator;
 
     private const float CELL_WIDTH = 20;
     private const float CELL_HEIGHT = 21;
@@ -30,7 +26,7 @@ public class Fighter : NetworkBehaviour
 
     void Awake()
     {
-        compAnim = GetComponent<SpriteAnim>();
+
     }
 
     void Start()
@@ -54,8 +50,6 @@ public class Fighter : NetworkBehaviour
     public void MovePlayer(eDirection dir)
     {
         MoveServerRpc(dir);
-        PlayMovementAnimation(dir);
-        UpdatePositionServerRpc();
     }
 
     [ServerRpc]
@@ -72,10 +66,32 @@ public class Fighter : NetworkBehaviour
         switch (dir)
         {
             case eDirection.Up: MoveUp(); break;
-            case eDirection.Right: MoveForward(); break;
             case eDirection.Down: MoveDown(); break;
-            case eDirection.Left: MoveBack(); break;
+            case eDirection.Right:
+                if (leftPlayer.Value == true)
+                {
+                    MoveForward();
+                }
+                else
+                {
+                    MoveBack();
+                }
+                break;
+
+            case eDirection.Left:
+                if (leftPlayer.Value == true)
+                {
+                    MoveBack();
+                }
+                else
+                {
+                    MoveForward();
+                }
+                break;
         }
+
+        PlayMovementAnimation(dir);
+        UpdatePositionServerRpc();
     }
 
     private void MoveUp()
@@ -150,24 +166,30 @@ public class Fighter : NetworkBehaviour
 
     private void PlayMovementAnimation(eDirection dir)
     {
-        AnimationClip anim = null;
+        int s = 0;
 
         switch (dir)
         {
-            case eDirection.Left: anim = this.transform.localScale.x == 1 ? animMoveBack : animMoveForward; break;
-            case eDirection.Right: anim = this.transform.localScale.x == 1 ? animMoveForward : animMoveBack; break;
-            case eDirection.Up: anim = animMoveBack; break;
-            case eDirection.Down: anim = animMoveForward; break;
-            case eDirection.None: anim = animIdle; break;
+            case eDirection.Left: s = 1; break;
+            case eDirection.Right: s = 2; break;
+            case eDirection.Up: s = 1; break;
+            case eDirection.Down: s = 2; break;
+            case eDirection.None: s = 0; break;
         }
 
-        compAnim.Play(anim);
+        animator.Animator.SetInteger("state", s);
     }
 
     public NetworkVariable<ulong> ClientId
     {
         get { return clientId; }
         set { clientId = value; }
+    }
+
+    public NetworkVariable<int> CharacterId
+    {
+        get { return characterId; }
+        set { characterId = value; }
     }
 
     public NetworkVariable<bool> LeftPlayer

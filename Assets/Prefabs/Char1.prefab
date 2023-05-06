@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 938916219567351451}
   - component: {fileID: 938916219567351430}
   - component: {fileID: 938916219567351449}
-  - component: {fileID: 938916219567351448}
   - component: {fileID: 938916219567351428}
   - component: {fileID: 938916219567351429}
   - component: {fileID: 3795489429133313107}
+  - component: {fileID: 8372927978477344522}
   m_Layer: 0
   m_Name: Char1
   m_TagString: Player
@@ -99,7 +99,7 @@ Animator:
   m_GameObject: {fileID: 938916219567351450}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 42ca55a1ae64d6e44a771a6954f5479f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -109,19 +109,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
---- !u!114 &938916219567351448
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 938916219567351450}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89a8ca009b14008429f621808bba2086, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_defaultAnim: {fileID: 7400000, guid: bb2fc3941888da147b5b3ed5cb689d01, type: 2}
 --- !u!114 &938916219567351428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,12 +165,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clientId:
     m_InternalValue: 0
+  characterId:
+    m_InternalValue: 0
+  leftPlayer:
+    m_InternalValue: 0
   currentPos:
+    m_InternalValue: {x: 0, y: 0}
+  limitX:
+    m_InternalValue: {x: 0, y: 0}
+  limitY:
     m_InternalValue: {x: 0, y: 0}
   inMovement:
     m_InternalValue: 0
   pendingDir:
     m_InternalValue: 0
+  animator: {fileID: 8372927978477344522}
   animIdle: {fileID: 7400000, guid: bb2fc3941888da147b5b3ed5cb689d01, type: 2}
   animMoveBack: {fileID: 7400000, guid: d6aa24b4cd148664587e87588f4ac061, type: 2}
   animMoveForward: {fileID: 7400000, guid: 3754a4c382e20f742a6a8d42b13894d4, type: 2}
+--- !u!114 &8372927978477344522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 938916219567351450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8d0727d5ae3244e3b569694d3912374, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TransitionStateInfoList: []
+  m_Animator: {fileID: 938916219567351449}

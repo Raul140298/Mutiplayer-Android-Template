@@ -10,42 +10,42 @@ public class GameController : NetworkBehaviour
     [SerializeField] private Fighter player;
     [SerializeField] private CharacterDatabase characterDatabase;
     [SerializeField] private Fighter[] players;
-    [SerializeField] private SpriteRenderer background;
 
     public override void OnNetworkSpawn()
     {
         if (IsServer)
         {
-            int numPlayer = -1;
+            bool leftPlayer = Random.Range(0, 2) == 0;
 
             foreach (var client in MatchplayNetworkServer.Instance.ClientData)
             {
                 var character = characterDatabase.GetCharacterById(client.Value.characterId);
                 if (character != null)
                 {
-                    numPlayer++;
-
                     var characterInstance = Instantiate(character.GameplayPrefab);
                     characterInstance.SpawnWithOwnership(client.Value.clientId);
 
                     Fighter player = characterInstance.GetComponent<Fighter>();
 
                     player.ClientId.Value = client.Value.clientId;
-                    player.gameObject.name = "Player " + numPlayer.ToString();
+                    player.CharacterId.Value = client.Value.characterId;
+                    player.gameObject.name = "Player " + (leftPlayer ? (0).ToString() : (1).ToString());
 
-                    if (numPlayer == 0)
+                    if (leftPlayer == true)
                     {
-                        player.LeftPlayer.Value = true;
+                        player.LeftPlayer.Value = leftPlayer;
                         player.SetStartingPosition(2, 3);
                         player.SetLimits(new Vector2(0, 3), new Vector2(0, 5));
                     }
                     else
                     {
-                        player.LeftPlayer.Value = false;
+                        player.LeftPlayer.Value = leftPlayer;
                         player.transform.localScale = new Vector3(-1, 1, 1);
                         player.SetStartingPosition(2, 8);
                         player.SetLimits(new Vector2(0, 3), new Vector2(6, 11));
                     }
+
+                    leftPlayer = !leftPlayer;
                 }
             }
         }
@@ -72,10 +72,17 @@ public class GameController : NetworkBehaviour
 
                 if (fighter.LeftPlayer.Value == false)
                 {
-                    background.flipX = true;
+                    FlipCamera();
                 }
             }
         }
+    }
+
+    private void FlipCamera()
+    {
+        Matrix4x4 mat = Camera.main.projectionMatrix;
+        mat *= Matrix4x4.Scale(new Vector3(-1, 1, 1));
+        Camera.main.projectionMatrix = mat;
     }
 
     void OnEnable()

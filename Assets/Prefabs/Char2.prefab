@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 938916219567351451}
   - component: {fileID: 938916219567351430}
   - component: {fileID: 938916219567351449}
-  - component: {fileID: 938916219567351448}
   - component: {fileID: 938916219567351428}
   - component: {fileID: 938916219567351429}
   - component: {fileID: 5033183431372614380}
+  - component: {fileID: 3853970011347360842}
   m_Layer: 0
   m_Name: Char2
   m_TagString: Player
@@ -99,7 +99,7 @@ Animator:
   m_GameObject: {fileID: 938916219567351450}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ca629b8d6c7eeb94c97c937a015e41c9, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -109,19 +109,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
---- !u!114 &938916219567351448
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 938916219567351450}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89a8ca009b14008429f621808bba2086, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_defaultAnim: {fileID: 7400000, guid: 4ee878f51f12855479daeafe38af3800, type: 2}
 --- !u!114 &938916219567351428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,6 +165,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clientId:
     m_InternalValue: 0
+  characterId:
+    m_InternalValue: 0
+  leftPlayer:
+    m_InternalValue: 0
   currentPos:
     m_InternalValue: {x: 0, y: 0}
   limitX:
@@ -188,6 +179,21 @@ MonoBehaviour:
     m_InternalValue: 0
   pendingDir:
     m_InternalValue: 0
+  animator: {fileID: 3853970011347360842}
   animIdle: {fileID: 7400000, guid: 4ee878f51f12855479daeafe38af3800, type: 2}
   animMoveBack: {fileID: 7400000, guid: 5580d5ee108f8454c85c4660b94f91d2, type: 2}
   animMoveForward: {fileID: 7400000, guid: 8908e0d62ad196c469bd6c2c40fa5642, type: 2}
+--- !u!114 &3853970011347360842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 938916219567351450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8d0727d5ae3244e3b569694d3912374, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TransitionStateInfoList: []
+  m_Animator: {fileID: 938916219567351449}
